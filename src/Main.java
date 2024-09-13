@@ -13,6 +13,7 @@ public class Main {
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
+    public static final String GET_NAME       = "GN";
     public static final String QUIT           = "Q";
 
     public static final String NUMBER_REPEAT = "EP";
@@ -27,6 +28,7 @@ public class Main {
     public static final String COMMAND_ERROR = "Unknown command.";
     public static final String SAME_NUMBER = "There are contacts that share phone numbers.";
     public static final String DIFERENT_NUMBER = "All contacts have different phone numbers.";
+    public static final String INVALID_NUMBER = "Phone number does not exist.";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -46,6 +48,9 @@ public class Main {
                     break;
                 case GET_EMAIL:
                     getEmail(in,cBook);
+                    break;
+                case GET_NAME:
+                    getName(in, cBook);
                     break;
                 case SET_PHONE:
                     setPhone(in,cBook);
@@ -124,6 +129,22 @@ public class Main {
             System.out.println(cBook.getEmail(name));
         }
         else System.out.println(NAME_NOT_EXIST);
+    }
+
+    private static void getName(Scanner in, ContactBook cBook) {
+        int phoneNum;
+        phoneNum = in.nextInt();
+        cBook.initializeIterator();
+        while( cBook.hasNext() ) {
+            Contact c = cBook.next();
+            if (c.getPhone() == phoneNum){
+                System.out.println(c.getName());
+                break;
+            }
+        }
+        if (!cBook.hasNext())
+            System.out.println(INVALID_NUMBER);
+
     }
 
     private static void setPhone(Scanner in, ContactBook cBook) {
