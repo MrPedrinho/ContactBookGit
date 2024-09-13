@@ -15,6 +15,7 @@ public class Main {
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
 
+    public static final String NUMBER_REPEAT = "EP";
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
@@ -24,6 +25,8 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
+    public static final String SAME_NUMBER = "There are contacts that share phone numbers.";
+    public static final String DIFERENT_NUMBER = "All contacts have different phone numbers.";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -52,6 +55,9 @@ public class Main {
                     break;
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
+                    break;
+                case NUMBER_REPEAT:
+                    verifySameNumber(cBook);
                     break;
                 default:
                     System.out.println(COMMAND_ERROR);
@@ -93,6 +99,13 @@ public class Main {
             System.out.println(CONTACT_REMOVED);
         }
         else System.out.println(NAME_NOT_EXIST);
+    }
+
+    private static void verifySameNumber(ContactBook cBook) {
+        if (cBook.hasSameNumber()) {
+            System.out.println(SAME_NUMBER);
+        }
+        else System.out.println(DIFERENT_NUMBER);
     }
 
     private static void getPhone(Scanner in, ContactBook cBook) {
