@@ -30,6 +30,9 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setName (String name) {
+        this.name = name;
+    }
 
     //Pre: otherContact != null
     public boolean equals(Contact otherContact) {
