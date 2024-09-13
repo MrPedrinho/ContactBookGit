@@ -100,6 +100,7 @@ public class ContactBook {
                 if (contacts[i].getPhone() == contacts[j].getPhone())
                     result = true;
         return result;
+
     }
 
 }
