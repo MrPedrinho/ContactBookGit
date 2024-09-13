@@ -133,16 +133,17 @@ public class Main {
 
     private static void getName(Scanner in, ContactBook cBook) {
         int phoneNum;
-        phoneNum = in.nextInt();
+        boolean found = false;
+        phoneNum = in.nextInt(); in.nextLine();
         cBook.initializeIterator();
-        while( cBook.hasNext() ) {
+        while( cBook.hasNext() && !found ) {
             Contact c = cBook.next();
             if (c.getPhone() == phoneNum){
                 System.out.println(c.getName());
-                break;
+                found = true;
             }
         }
-        if (!cBook.hasNext())
+        if (!found)
             System.out.println(INVALID_NUMBER);
 
     }
